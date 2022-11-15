@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Models
+  m_EditorClassIdentifier: 
+  m_GroupName: Models
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 81beac44f1ee9914b898bba527ff8ebb
+  m_SerializeEntries:
+  - m_GUID: 7a7b31f9804c94b4f87904c107d471ee
+    m_Address: Assets/AddressableAssets/Items/Table.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Furnitures
+  - m_GUID: 4813a8fe6b469f541a14fd95a14a287b
+    m_Address: Assets/AddressableAssets/Items/Sofa.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Furnitures
+  - m_GUID: 20e5a6f4c6962f140abc527f5f3b3327
+    m_Address: Assets/AddressableAssets/Items/WoodenChair.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Furnitures
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: aea4ca49a9449af4dbf2e9f702186f2b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7755bdb8179371e429a7bddfb4c5b12e, type: 2}
+    - {fileID: 11400000, guid: bd4db3ac1347c8d4f9c73386612a82b4, type: 2}

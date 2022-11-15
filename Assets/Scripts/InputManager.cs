@@ -3,7 +3,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
-using static UnityEditor.Progress;
 
 public class InputManager : MonoBehaviour
 {
@@ -17,7 +16,9 @@ public class InputManager : MonoBehaviour
 
     private void Reset()
     {
+#if UNITY_EDITOR
         arObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Models/Perfabs-Models/Sofa.prefab", typeof(GameObject));
+#endif
         arCam = GameObject.Find("AR Camera").GetComponent<Camera>();
         _ARRaycastManager = FindObjectOfType<ARRaycastManager>();
         crosshair = GameObject.Find("CrossHair");

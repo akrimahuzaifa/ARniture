@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
+using UnityEngine.AddressableAssets;
 
 public class DataHandler : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DataHandler : MonoBehaviour
     [SerializeField] ButtonManager buttonPrefab;
     [SerializeField] GameObject buttonContainer;
     [SerializeField] List<Item> items;
+    [SerializeField] private string label;
     int currentId = 0;
 
     public static DataHandler instance;
@@ -27,13 +29,17 @@ public class DataHandler : MonoBehaviour
 
     private void Reset()
     {
+#if UNITY_EDITOR
         buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ButtonManager>();
+#endif
         buttonContainer = GameObject.Find("Content");
     }
 
-    private void Awake()
+    private async void Awake()
     {
-        LoadItems();
+        items = new List<Item>();
+        //LoadItems();
+        await Get(label); 
         CreateButtons();
     }
 
@@ -48,14 +54,14 @@ public class DataHandler : MonoBehaviour
         }
     }
 
-    void LoadItems()
+/*    void LoadItems()
     {
         var itemsObj = Resources.LoadAll("Items", typeof(Item));
         foreach (var item in itemsObj)
         {
             items.Add(item as Item);
         }
-    }
+    }*/
 
     public void SetFurniture(int id)
     {
@@ -65,5 +71,15 @@ public class DataHandler : MonoBehaviour
     public GameObject GetFurniture()
     {
         return furniture;
+    }
+
+    public async Task Get(string label)
+    {
+        var locations = await Addressables.LoadResourceLocationsAsync(label).Task;
+        foreach (var location in locations)
+        {
+            var obj = await Addressables.LoadAssetAsync<Item>(location).Task;
+            items.Add(obj);
+        }
     }
 }

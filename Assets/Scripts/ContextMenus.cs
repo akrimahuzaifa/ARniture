@@ -18,7 +18,9 @@ public class ContextMenus : MonoBehaviour
                 item.AddComponent<ButtonManager>();
                 item.GetComponent<ButtonManager>().btn = item.GetComponent<Button>();
                 //item.GetComponent<ButtonManager>().furniture = Resources.Load<GameObject>("Perfabs-Models/" + item.gameObject.name);
+#if UNITY_EDITOR
                 var obj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Perfabs-Models/" + item.gameObject.name + ".prefab", typeof(GameObject));
+#endif
                 //item.GetComponent<ButtonManager>().furniture = obj;
             }
         }
