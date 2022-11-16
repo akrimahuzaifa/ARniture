@@ -2837,6 +2837,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 2305604970654480064, guid: e150d09e2c0637146872e8e533eaf9b0, type: 3}
   buttonContainer: {fileID: 1060020785}
   items: []
+  label: Furnitures
 --- !u!1 &1208875963
 GameObject:
   m_ObjectHideFlags: 0

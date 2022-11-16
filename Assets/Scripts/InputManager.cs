@@ -26,19 +26,13 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+#if !UNITY_EDITOR
         CrosshairCalculation();
         touch = Input.GetTouch(0);
-/*        try
-        {
-        }
-        catch (System.Exception)
-        {
-            Debug.LogWarning("Errror in update");
-            //throw;
-        }*/
         if (Input.touchCount < 0 || touch.phase != TouchPhase.Began) return;
         if (IsPointerOverUI(touch)) return;
         Instantiate(DataHandler.Instance.GetFurniture(), pose.position, pose.rotation);
+#endif
     }
 
     bool IsPointerOverUI(Touch touch)

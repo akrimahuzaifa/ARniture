@@ -32,6 +32,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Furnitures
+  - m_GUID: c2c88dd7f9fa15c48b29a8740ff30a5f
+    m_Address: Assets/AddressableAssets/Items/TVTable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Furnitures
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: aea4ca49a9449af4dbf2e9f702186f2b, type: 2}
   m_SchemaSet:

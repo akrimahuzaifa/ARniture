@@ -64,7 +64,7 @@ MonoBehaviour:
       - m_Id: 19829c26122b7c742abef3795f74b125
         m_Value: ServerData/[BuildTarget]
       - m_Id: 496147500001ed04a9d1f104f0046ce7
-        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+        m_Value: https://storage.googleapis.com/arniture-app/[BuildTarget]
     m_ProfileEntryNames:
     - m_Id: ce370ea223b83e94aa0a346b6dd7a610
       m_Name: BuildTarget
