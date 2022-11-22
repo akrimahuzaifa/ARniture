@@ -48,10 +48,12 @@ public class DataHandler : MonoBehaviour
         foreach (Item i in items)
         {
             ButtonManager b = Instantiate(buttonPrefab, buttonContainer.transform);
+            b.name = i.name;
             b.ItemId = currentId;
             b.ButtonTexture = i.itemImage;
             currentId++;
         }
+        StartCoroutine(UIContentFitter.Instance.ContentSizeFitter());
     }
 
 /*    void LoadItems()

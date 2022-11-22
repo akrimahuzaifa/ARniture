@@ -5,14 +5,27 @@ using UnityEngine.UI;
 
 public class UIContentFitter : MonoBehaviour
 {
-    private void Start()
+    public static UIContentFitter instance;
+    public static UIContentFitter Instance
     {
-        StartCoroutine(ContentSizeFitter());
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<UIContentFitter>();
+            }
+            return instance;
+        }
     }
 
-    IEnumerator ContentSizeFitter()
+    private void Start()
     {
-        yield return new WaitForSeconds(3f);
+        //StartCoroutine(ContentSizeFitter());
+    }
+
+    public IEnumerator ContentSizeFitter()
+    {
+        yield return new WaitForSeconds(1f);
         HorizontalLayoutGroup hg = GetComponent<HorizontalLayoutGroup>();
         int childCount = transform.childCount - 1;
         float childWidth = transform.GetChild(0).GetComponent<RectTransform>().rect.width;
