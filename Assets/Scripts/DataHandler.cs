@@ -1,9 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 public class DataHandler : MonoBehaviour
 {
@@ -11,7 +14,7 @@ public class DataHandler : MonoBehaviour
     [SerializeField] ButtonManager buttonPrefab;
     [SerializeField] GameObject buttonContainer;
     [SerializeField] List<Item> items;
-    [SerializeField] private string label;
+    [SerializeField] private string label = "Furnitures";
     int currentId = 0;
 
     public static DataHandler instance;
@@ -38,7 +41,7 @@ public class DataHandler : MonoBehaviour
     private async void Awake()
     {
         items = new List<Item>();
-        //LoadItems();
+        //ObjectDownloadComplete();
         await Get(label); 
         CreateButtons();
     }
@@ -55,15 +58,6 @@ public class DataHandler : MonoBehaviour
         }
         StartCoroutine(UIContentFitter.Instance.ContentSizeFitter());
     }
-
-/*    void LoadItems()
-    {
-        var itemsObj = Resources.LoadAll("Items", typeof(Item));
-        foreach (var item in itemsObj)
-        {
-            items.Add(item as Item);
-        }
-    }*/
 
     public void SetFurniture(int id)
     {
@@ -83,5 +77,24 @@ public class DataHandler : MonoBehaviour
             var obj = await Addressables.LoadAssetAsync<Item>(location).Task;
             items.Add(obj);
         }
+    }
+
+    IEnumerator DownloadFurniture(string label)
+    {
+        yield return Get(label);
+        var operation = Addressables.LoadResourceLocationsAsync(label).Task;
+        while (!operation.IsCompleted)
+        {
+            Debug.Log("Progress: " + Addressables.LoadResourceLocationsAsync(label).PercentComplete);
+            var objj = Instantiate(new GameObject());
+            objj.name = Addressables.LoadResourceLocationsAsync(label).PercentComplete.ToString();
+            yield return null;
+        }
+        CreateButtons();
+    }
+
+    private void ObjectDownloadComplete()
+    {
+        StartCoroutine(DownloadFurniture(label));
     }
 }
