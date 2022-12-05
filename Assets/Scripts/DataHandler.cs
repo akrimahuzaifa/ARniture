@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.SceneManagement;
+
 
 public class DataHandler : MonoBehaviour
 {
@@ -33,7 +30,8 @@ public class DataHandler : MonoBehaviour
     private void Reset()
     {
 #if UNITY_EDITOR
-        buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ButtonManager>();
+        //---Uncomment it when runing reset in editor ---
+        //buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ButtonManager>();
 #endif
         buttonContainer = GameObject.Find("Content");
     }
