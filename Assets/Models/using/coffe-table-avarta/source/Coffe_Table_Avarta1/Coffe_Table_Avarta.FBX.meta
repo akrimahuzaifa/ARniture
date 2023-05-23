@@ -3,7 +3,22 @@ guid: b55f16fb1965d194892aa06173614dcf
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stolik_glass
+    second: {fileID: 2100000, guid: b35100cb1d10e6a40b3f85d94d1685be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stoloik_metall
+    second: {fileID: 2100000, guid: 1a976c048969c6944973e8f84974ef06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass_tor_id3
+    second: {fileID: 2100000, guid: 39672aceffb3c604c9200653e9b765f2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

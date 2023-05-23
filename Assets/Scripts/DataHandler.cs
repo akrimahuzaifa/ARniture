@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -11,6 +12,7 @@ public class DataHandler : MonoBehaviour
     [SerializeField] ButtonManager buttonPrefab;
     [SerializeField] GameObject buttonContainer;
     [SerializeField] List<Item> items;
+    [SerializeField] List<Item> Furnitures;
     [SerializeField] private string label = "Furnitures";
     int currentId = 0;
 
@@ -32,8 +34,14 @@ public class DataHandler : MonoBehaviour
 #if UNITY_EDITOR
         //---Uncomment it when runing reset in editor ---
         //buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ButtonManager>();
+        
 #endif
         buttonContainer = GameObject.Find("Content");
+    }
+
+    private void GetFurnitures()
+    {
+
     }
 
     private async void Awake()
