@@ -22,11 +22,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Furnitures
-  - m_GUID: 4813a8fe6b469f541a14fd95a14a287b
-    m_Address: Assets/AddressableAssets/Items/Sofa.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Furnitures
   - m_GUID: 20e5a6f4c6962f140abc527f5f3b3327
     m_Address: Assets/AddressableAssets/Items/WoodenChair.asset
     m_ReadOnly: 0
