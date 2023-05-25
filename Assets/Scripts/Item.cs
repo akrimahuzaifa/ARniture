@@ -1,7 +1,6 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.WSA;
 
 [CreateAssetMenu(fileName = "Item1", menuName = "Add Item/Item")]
 public class Item : ScriptableObject
@@ -10,18 +9,19 @@ public class Item : ScriptableObject
     public GameObject itemPrefab;
     public Sprite itemImage;
 
-    [SerializeField] private bool isFurniture = true;
-    [SerializeField] private bool searchInSubDirectories;
-    [SerializeField] private string objectName;
-    [SerializeField] private string prefabPath;
+    public bool searchInSubDirectories;
+    public string prefabPath;
+    
     [SerializeField] private string texturePath;
+    [SerializeField] private string objectName;
+    [SerializeField] private bool isFurniture = true;
 
     #if UNITY_EDITOR
     public void Reset()
     {
         price = 100;
         SetPrefabPath();
-        texturePath = "Assets/Textures/Sprites";
+        texturePath = "Assets/Textures/Sprites/Buttons/";
         GetObjectName();
         GetItemPrefab();
         SetItemImage();
@@ -51,12 +51,14 @@ public class Item : ScriptableObject
 
         // Get the file name without extension
         objectName = Path.GetFileNameWithoutExtension(assetPath);
+        Debug.Log("ObjName: " + objectName);
     }
 
     private void GetItemPrefab()
     {
         if (isFurniture)
         {
+            //Debug.Log("searchInSubDirectories: " + searchInSubDirectories);
             if (searchInSubDirectories)
             {
                 //---getting all folders from Pole---
@@ -68,22 +70,28 @@ public class Item : ScriptableObject
                     var folderName = Path.GetFileName(folderPath);
                     if (objectName.Contains(folderName))
                     {
-                        var files = Directory.GetFiles(folderPath, "*.prefab");
-                        foreach (string file in files)
-                        {
-                            //Debug.Log(file);
-                            //Debug.Log(objectName);
-                            if (file.Contains(objectName))
-                            {
-                                itemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(file);
-                            }                               
-                        }
+                        SetPrefab(folderPath);
                     }
                 }
             }
             else
             {
+                //Debug.Log(prefabPath);
+                SetPrefab(prefabPath);
+            }
+        }
+    }
 
+    private void SetPrefab(string folderPath)
+    {
+        var files = Directory.GetFiles(folderPath, "*.prefab");
+        foreach (string file in files)
+        {
+            //Debug.Log(file);
+            //Debug.Log(objectName);
+            if (file.Contains(objectName))
+            {
+                itemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(file);
             }
         }
     }

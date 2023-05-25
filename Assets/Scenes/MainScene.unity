@@ -620,43 +620,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18797864}
   m_CullTransparentMesh: 0
---- !u!84 &25072319
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 557
-  m_Height: 990
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &28791462
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,7 +3972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.82900006}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0021972656, y: 0.9760132}
+  m_AnchoredPosition: {x: 0.0021972656, y: 0.97595215}
   m_SizeDelta: {x: 0.8000488, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201917924
@@ -4443,7 +4406,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2087875122}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.32532582
+  m_Size: 0.32512438
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4724,8 +4687,8 @@ MonoBehaviour:
   autoEnableOutlines: 1
   outlineCamera: {fileID: 1298157516}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 25072319}
-  extraRenderTexture: {fileID: 1594392666}
+  renderTexture: {fileID: 1230227487}
+  extraRenderTexture: {fileID: 682061749}
 --- !u!114 &223974234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11316,6 +11279,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677936510}
   m_CullTransparentMesh: 0
+--- !u!84 &682061749
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 310
+  m_Height: 552
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &682643508
 GameObject:
   m_ObjectHideFlags: 0
@@ -19991,8 +19991,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 2305604970654480064, guid: e150d09e2c0637146872e8e533eaf9b0, type: 3}
   buttonContainer: {fileID: 1060020785}
-  items: []
-  Furnitures: []
+  Furnitures:
+  - {fileID: 11400000, guid: 995f722887b652a41a917caeecf7b9e1, type: 2}
+  - {fileID: 11400000, guid: 1c7ec76281e3c0d41b3751d6a4e382d1, type: 2}
+  - {fileID: 11400000, guid: 4711279d5f00dc749a642c2f0205055e, type: 2}
+  - {fileID: 11400000, guid: aee6f7e175f35c8429af0f91ce863ea3, type: 2}
+  - {fileID: 11400000, guid: 6d398ad185c7f2e499ff6b064eced201, type: 2}
+  - {fileID: 11400000, guid: ac3f5cbbc29f03b4e9b537e7c696bdd2, type: 2}
+  - {fileID: 11400000, guid: 98621ec04e7cdff4587aea448e2d00b0, type: 2}
+  - {fileID: 11400000, guid: c8d5ab219a037fe468fbe2e6dffd6666, type: 2}
+  - {fileID: 11400000, guid: c4600a7e3af83744aa8e22b908f8b9e8, type: 2}
+  - {fileID: 11400000, guid: a0ab0f66f88f62348920e7f46ac3f75e, type: 2}
+  - {fileID: 11400000, guid: c05f68e3251b0e84eacbba5d3ade0e79, type: 2}
+  - {fileID: 11400000, guid: 7be2d3eddd4fa0e42856a408edf75b36, type: 2}
+  - {fileID: 11400000, guid: 33523019a1ccbb9498ab2ce3107ca408, type: 2}
+  - {fileID: 11400000, guid: 3707bf44e44f6fe4c9abc2cb2f8aedf2, type: 2}
+  - {fileID: 11400000, guid: 1f6befff5aca86741a022af5fa0b4866, type: 2}
+  - {fileID: 11400000, guid: f9db6ff6272c9bf409542671f7b54c09, type: 2}
+  - {fileID: 11400000, guid: ce475e821134bc64ca6dfbae8f5008de, type: 2}
+  - {fileID: 11400000, guid: 911e3a0928af3c94893a5378e7d8f24f, type: 2}
+  - {fileID: 11400000, guid: 6acf525129b937a49baf190e0bd125dc, type: 2}
   label: Furnitures
 --- !u!1 &1188751899
 GameObject:
@@ -21150,6 +21168,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229963926}
   m_CullTransparentMesh: 1
+--- !u!84 &1230227487
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 310
+  m_Height: 552
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 90
+  m_ColorFormat: 4
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &1239970784
 GameObject:
   m_ObjectHideFlags: 0
@@ -21802,7 +21857,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 25072319}
+  m_TargetTexture: {fileID: 1230227487}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -25452,13 +25507,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df05844d95aa2594b8a8e8c82e18a0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFurniture: 1
   price: 0
   itemPrefab: {fileID: 0}
   itemImage: {fileID: 0}
-  objectName: 
+  searchInSubDirectories: 0
   prefabPath: 
   texturePath: 
+  objectName: 
+  isFurniture: 1
 --- !u!1 &1485412912
 GameObject:
   m_ObjectHideFlags: 0
@@ -27248,43 +27304,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!84 &1594392666
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 557
-  m_Height: 990
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 90
-  m_ColorFormat: 4
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &1602200092
 GameObject:
   m_ObjectHideFlags: 0

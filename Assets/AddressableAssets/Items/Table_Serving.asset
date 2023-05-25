@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df05844d95aa2594b8a8e8c82e18a0af, type: 3}
+  m_Name: Table_Serving
+  m_EditorClassIdentifier: 
+  price: 100
+  itemPrefab: {fileID: 8602331628183678674, guid: 2c82b1ebd6976de468a7cab28f5773ee, type: 3}
+  itemImage: {fileID: 21300000, guid: 9e20093ca1fe60e4996a099432fc6710, type: 3}
+  searchInSubDirectories: 0
+  prefabPath: Assets/Prefabs/Perfabs-Models/Furnitures/
+  texturePath: Assets/Textures/Sprites/Buttons/
+  objectName: Table_Serving
+  isFurniture: 1

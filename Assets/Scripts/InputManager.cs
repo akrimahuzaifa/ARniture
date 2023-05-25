@@ -8,10 +8,10 @@ using UnityEngine.XR.Interaction.Toolkit.AR;
 
 public class InputManager : ARBaseGestureInteractable
 {
-    [SerializeField] GameObject arObj;
     [SerializeField] Camera arCam;
-    [SerializeField] ARRaycastManager _ARRaycastManager;
     [SerializeField] GameObject crosshair;
+    [SerializeField] GameObject arObj;
+    [SerializeField] ARRaycastManager _ARRaycastManager;
     Touch touch;
     Pose pose;
     List<ARRaycastHit> _hits = new List<ARRaycastHit>();

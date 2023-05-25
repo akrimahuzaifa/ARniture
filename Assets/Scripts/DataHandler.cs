@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -11,8 +13,8 @@ public class DataHandler : MonoBehaviour
     GameObject furniture;
     [SerializeField] ButtonManager buttonPrefab;
     [SerializeField] GameObject buttonContainer;
-    [SerializeField] List<Item> items;
-    [SerializeField] List<Item> Furnitures;
+    //[SerializeField] List<Item> items;
+    [SerializeField] List<Item> Furnitures = new List<Item>();
     [SerializeField] private string label = "Furnitures";
     int currentId = 0;
 
@@ -33,26 +35,30 @@ public class DataHandler : MonoBehaviour
     {
 #if UNITY_EDITOR
         //---Uncomment it when runing reset in editor ---
-        //buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ButtonManager>();
-        
+        buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ButtonManager>();
+        var files = Directory.GetFiles("Assets/AddressableAssets/Items/", "*.asset");
+        foreach (var file in files)
+        {
+            var item = AssetDatabase.LoadAssetAtPath<Item>(file);
+            Furnitures.Add(item);
+        }
 #endif
         buttonContainer = GameObject.Find("Content");
     }
 
-    private void GetFurnitures()
+    /*    private async void Awake()
+        {
+            items = new List<Item>();
+            //ObjectDownloadComplete();
+            await Get(label); 
+            CreateButtons();
+        }*/
+
+    private void Awake()
     {
-
+        CreateButtons(Furnitures);
     }
-
-    private async void Awake()
-    {
-        items = new List<Item>();
-        //ObjectDownloadComplete();
-        await Get(label); 
-        CreateButtons();
-    }
-
-    void CreateButtons()
+    void CreateButtons(List<Item> items)
     {
         foreach (Item i in items)
         {
@@ -65,9 +71,22 @@ public class DataHandler : MonoBehaviour
         StartCoroutine(UIContentFitter.Instance.ContentSizeFitter());
     }
 
+/*    void CreateButtons()
+    {
+        foreach (Item i in items)
+        {
+            ButtonManager b = Instantiate(buttonPrefab, buttonContainer.transform);
+            b.name = i.name;
+            b.ItemId = currentId;
+            b.ButtonTexture = i.itemImage;
+            currentId++;
+        }
+        StartCoroutine(UIContentFitter.Instance.ContentSizeFitter());
+    }*/
+
     public void SetFurniture(int id)
     {
-        furniture = items[id].itemPrefab;
+        furniture = Furnitures[id].itemPrefab;
     }
 
     public GameObject GetFurniture()
@@ -75,7 +94,7 @@ public class DataHandler : MonoBehaviour
         return furniture;
     }
 
-    public async Task Get(string label)
+/*    public async Task Get(string label)
     {
         var locations = await Addressables.LoadResourceLocationsAsync(label).Task;
         foreach (var location in locations)
@@ -83,9 +102,9 @@ public class DataHandler : MonoBehaviour
             var obj = await Addressables.LoadAssetAsync<Item>(location).Task;
             items.Add(obj);
         }
-    }
+    }*/
 
-    IEnumerator DownloadFurniture(string label)
+/*    IEnumerator DownloadFurniture(string label)
     {
         yield return Get(label);
         var operation = Addressables.LoadResourceLocationsAsync(label).Task;
@@ -96,11 +115,11 @@ public class DataHandler : MonoBehaviour
             objj.name = Addressables.LoadResourceLocationsAsync(label).PercentComplete.ToString();
             yield return null;
         }
-        CreateButtons();
-    }
+        //CreateButtons();
+    }*/
 
-    private void ObjectDownloadComplete()
+/*    private void ObjectDownloadComplete()
     {
         StartCoroutine(DownloadFurniture(label));
-    }
+    }*/
 }

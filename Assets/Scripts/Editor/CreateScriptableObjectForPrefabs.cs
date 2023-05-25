@@ -4,11 +4,11 @@ using System.IO;
 
 public class CreateScriptableObjectForPrefabs : EditorWindow
 {
-    private string prefabFolderPath = "Assets/Prefabs/Perfabs-Models/Furnitures/Bed/";
+    private string prefabFolderPath = "Assets/Prefabs/Perfabs-Models/Furnitures/";
     private string scriptableObjectFolderPath = "Assets/AddressableAssets/Items/";
     private bool searchInSubDirectories;
 
-    [MenuItem("Window/Create ScriptableObjects for Prefabs")]
+    [MenuItem("AHK/Create ScriptableObjects for Prefabs")]
     private static void ShowWindow()
     {
         GetWindow<CreateScriptableObjectForPrefabs>("Create ScriptableObjects");
@@ -66,7 +66,6 @@ public class CreateScriptableObjectForPrefabs : EditorWindow
 
         // Create a ScriptableObject with the same name as the prefab
         string fileName = Path.GetFileName(prefabPath);
-        //string scriptableObjectPath = prefabPath.Replace(prefabFolderPath, scriptableObjectFolderPath);
         string scriptableObjectPath = scriptableObjectFolderPath + fileName;
         scriptableObjectPath = scriptableObjectPath.Replace(".prefab", ".asset");
 
@@ -79,13 +78,24 @@ public class CreateScriptableObjectForPrefabs : EditorWindow
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            Item objToReset = AssetDatabase.LoadAssetAtPath<Item>(scriptableObjectPath);
-            objToReset.Reset();
-            Debug.Log("Created ScriptableObject for prefab: " + prefab.name);
+            SetItemVariables(prefabPath, scriptableObjectPath);
+            //Debug.Log("Created ScriptableObject for prefab: " + prefab.name);
         }
         else
         {
             Debug.Log("File Already Exist!");
+            SetItemVariables(prefabPath, scriptableObjectPath);
         }
+    }
+
+    private void SetItemVariables(string prefabPath, string scriptableObjectPath)
+    {
+        Item objToReset = AssetDatabase.LoadAssetAtPath<Item>(scriptableObjectPath);
+        //Debug.Log("PrefabPath At Editor: " + prefabPath);
+        //Debug.Log("searchInSubDirectories in Editor: " + searchInSubDirectories);
+        //objToReset.prefabPath = prefabPath;
+        objToReset.searchInSubDirectories = searchInSubDirectories;
+        //Debug.Log("searchInSubDirectories in Item: " + objToReset.searchInSubDirectories);
+        objToReset.Reset();
     }
 }
