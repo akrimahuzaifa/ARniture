@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5479500489074921206}
   - component: {fileID: 409670225038844305}
   - component: {fileID: 8537763845055803770}
+  - component: {fileID: 5260264286967193973}
   m_Layer: 0
   m_Name: Sofa_ThreePersonSingle
   m_TagString: Untagged
@@ -300,6 +301,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1092138, y: 0.82089245, z: 1.058562}
   m_Center: {x: 0.0017626286, y: 0.40712327, z: -0.019409418}
+--- !u!54 &5260264286967193973
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333333287028129454}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3173930009943441529
 GameObject:
   m_ObjectHideFlags: 0

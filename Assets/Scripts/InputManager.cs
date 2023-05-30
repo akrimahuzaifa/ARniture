@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,7 @@ public class InputManager : ARBaseGestureInteractable
     [SerializeField] GameObject crosshair;
     [SerializeField] GameObject arObj;
     [SerializeField] ARRaycastManager _ARRaycastManager;
+    [SerializeField] private List<GameObject> _ARObjects = new List<GameObject>();
     Touch touch;
     Pose pose;
     List<ARRaycastHit> _hits = new List<ARRaycastHit>();
@@ -33,12 +35,27 @@ public class InputManager : ARBaseGestureInteractable
         }
         if (GestureTransformationUtility.Raycast(gesture.startPosition, _hits, TrackableType.PlaneWithinPolygon))
         {
-            GameObject placeObj = Instantiate(DataHandler.Instance.GetFurniture(), pose.position, pose.rotation);
-            Debug.Log("Object instantiated...: " + placeObj.name);
-            var anchorObject = new GameObject("PlacementAnchor");
-            anchorObject.transform.position = pose.position;
-            anchorObject.transform.rotation = pose.rotation;
-            placeObj.transform.parent = anchorObject.transform;
+            var furniture = DataHandler.Instance.GetFurniture();
+            if (_ARObjects.Contains(furniture))
+            {
+/*                var objOpen = (from fur in _ARObjects
+                               where fur == furniture
+                               select fur).FirstOrDefault();*/
+
+                var obj = _ARObjects.Where(x => x == furniture).FirstOrDefault();
+                obj.transform.parent.SetPositionAndRotation(pose.position, pose.rotation);
+            }
+            else
+            {
+                GameObject placeObj = Instantiate(furniture, pose.position, pose.rotation);
+                placeObj.name = DataHandler.Instance.GetFurniture().name;
+                Debug.Log("Object instantiated...: " + placeObj.name);
+                var anchorObject = new GameObject("PlacementAnchor");
+                anchorObject.transform.position = pose.position;
+                anchorObject.transform.rotation = pose.rotation;
+                placeObj.transform.parent = anchorObject.transform;
+                _ARObjects.Add(placeObj);
+            }
         }
     }
 
