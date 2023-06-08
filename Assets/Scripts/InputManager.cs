@@ -14,6 +14,7 @@ public class InputManager : ARBaseGestureInteractable
     [SerializeField] GameObject arObj;
     [SerializeField] ARRaycastManager _ARRaycastManager;
     [SerializeField] private List<GameObject> _ARObjects = new List<GameObject>();
+    public GameObject PreviewObject;
     Touch touch;
     Pose pose;
     List<ARRaycastHit> _hits = new List<ARRaycastHit>();
@@ -35,27 +36,36 @@ public class InputManager : ARBaseGestureInteractable
         }
         if (GestureTransformationUtility.Raycast(gesture.startPosition, _hits, TrackableType.PlaneWithinPolygon))
         {
-            var furniture = DataHandler.Instance.GetFurniture();
-            if (_ARObjects.Contains(furniture))
-            {
-/*                var objOpen = (from fur in _ARObjects
-                               where fur == furniture
-                               select fur).FirstOrDefault();*/
+            PreviewObject = Instantiate(DataHandler.Instance.GetFurniture(), pose.position, pose.rotation);
+            Debug.Log("Object instantiated...: " + PreviewObject.name);
+            var anchorObject = new GameObject("PlacementAnchor");
+            anchorObject.transform.position = pose.position;
+            anchorObject.transform.rotation = pose.rotation;
+            PreviewObject.transform.parent = anchorObject.transform;
 
-                var obj = _ARObjects.Where(x => x == furniture).FirstOrDefault();
-                obj.transform.parent.SetPositionAndRotation(pose.position, pose.rotation);
-            }
-            else
-            {
-                GameObject placeObj = Instantiate(furniture, pose.position, pose.rotation);
-                placeObj.name = DataHandler.Instance.GetFurniture().name;
-                Debug.Log("Object instantiated...: " + placeObj.name);
-                var anchorObject = new GameObject("PlacementAnchor");
-                anchorObject.transform.position = pose.position;
-                anchorObject.transform.rotation = pose.rotation;
-                placeObj.transform.parent = anchorObject.transform;
-                _ARObjects.Add(placeObj);
-            }
+            #region Logic to do not instantiate new object if its already there
+            /*            var furniture = DataHandler.Instance.GetFurniture();
+                        if (_ARObjects.Contains(furniture))
+                        {
+                            var objOpen = (from fur in _ARObjects
+                                           where fur == furniture
+                                           select fur).FirstOrDefault();
+
+                            var obj = _ARObjects.Where(x => x == furniture).FirstOrDefault();
+                            obj.transform.parent.SetPositionAndRotation(pose.position, pose.rotation);
+                        }
+                        else
+                        {
+                            GameObject PreviewObject = Instantiate(furniture, pose.position, pose.rotation);
+                            PreviewObject.name = DataHandler.Instance.GetFurniture().name;
+                            Debug.Log("Object instantiated...: " + PreviewObject.name);
+                            var anchorObject = new GameObject("PlacementAnchor");
+                            anchorObject.transform.position = pose.position;
+                            anchorObject.transform.rotation = pose.rotation;
+                            PreviewObject.transform.parent = anchorObject.transform;
+                            _ARObjects.Add(PreviewObject);
+                        }*/
+            #endregion
         }
     }
 
@@ -72,6 +82,9 @@ public class InputManager : ARBaseGestureInteractable
     private void FixedUpdate()
     {
         CrosshairCalculation();
+        //-----Logic to move object with crossheir---
+        //if (!PreviewObject) return;
+        //PreviewObject.transform.position = crosshair.transform.position;
     
 
 /*#if !UNITY_EDITOR
