@@ -5,7 +5,7 @@ public class ScriptsRef : MonoBehaviour
     public static ScriptsRef instance;
     
     public UIManager UImanager;
-    public ButtonManager ButtonManager;
+    public ObjectButtonHandler ButtonManager;
     public InputManager InputManager;
     public DataHandler DataHandler;
     public PlaneMatManager PlaneMatManager;
@@ -29,7 +29,7 @@ public class ScriptsRef : MonoBehaviour
     private void Reset()
     {
         UImanager = FindObjectOfType<UIManager>(true);
-        ButtonManager = FindObjectOfType<ButtonManager>(true);
+        ButtonManager = FindObjectOfType<ObjectButtonHandler>(true);
         InputManager = FindObjectOfType<InputManager>(true);
         DataHandler = FindObjectOfType<DataHandler>(true);
         PlaneMatManager = FindObjectOfType<PlaneMatManager>(true);

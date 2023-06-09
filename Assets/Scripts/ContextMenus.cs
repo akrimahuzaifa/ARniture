@@ -12,16 +12,16 @@ public class ContextMenus : MonoBehaviour
         var allBtns = gameObject.GetComponentsInChildren<Transform>();
         foreach (var item in allBtns)
         {
-            if (item != transform && item.GetComponent<ButtonManager>() == null)
+            if (item != transform && item.GetComponent<ObjectButtonHandler>() == null)
             {
                 item.AddComponent<Button>();
-                item.AddComponent<ButtonManager>();
-                item.GetComponent<ButtonManager>().btn = item.GetComponent<Button>();
-                //item.GetComponent<ButtonManager>().furniture = Resources.Load<GameObject>("Perfabs-Models/" + item.gameObject.name);
+                item.AddComponent<ObjectButtonHandler>();
+                item.GetComponent<ObjectButtonHandler>().btn = item.GetComponent<Button>();
+                //item.GetComponent<ObjectButtonHandler>().furniture = Resources.Load<GameObject>("Perfabs-Models/" + item.gameObject.name);
 #if UNITY_EDITOR
                 var obj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Perfabs-Models/" + item.gameObject.name + ".prefab", typeof(GameObject));
 #endif
-                //item.GetComponent<ButtonManager>().furniture = obj;
+                //item.GetComponent<ObjectButtonHandler>().furniture = obj;
             }
         }
     }
@@ -33,9 +33,9 @@ public class ContextMenus : MonoBehaviour
         var allBtns = gameObject.GetComponentsInChildren<Button>();
         foreach (var item in allBtns)
         {
-            if (item.GetComponent<ButtonManager>() != null)
+            if (item.GetComponent<ObjectButtonHandler>() != null)
             {
-                DestroyImmediate(item.GetComponent<ButtonManager>());
+                DestroyImmediate(item.GetComponent<ObjectButtonHandler>());
                 DestroyImmediate(item.GetComponent<Button>());
             }
         }

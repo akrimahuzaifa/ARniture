@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonManager : MonoBehaviour
+public class ObjectButtonHandler : MonoBehaviour
 {
     public Button btn;
     [SerializeField] RawImage buttonImage;
@@ -45,8 +45,9 @@ public class ButtonManager : MonoBehaviour
 
     public void SelectedObject()
     {
-        Debug.Log("Clicked item: " + gameObject.name);
+        //Debug.Log("Clicked item: " + gameObject.name);
         //DataHandler.Instance.furniture = furniture;
         DataHandler.Instance.SetFurniture(itemId);
+        InputManager.OnButtonClick?.Invoke();
     }
 }

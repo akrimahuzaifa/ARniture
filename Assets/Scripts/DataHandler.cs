@@ -11,7 +11,7 @@ using UnityEngine.AddressableAssets;
 public class DataHandler : MonoBehaviour
 {
     GameObject furniture;
-    [SerializeField] ButtonManager buttonPrefab;
+    [SerializeField] ObjectButtonHandler buttonPrefab;
     [SerializeField] GameObject buttonContainer;
     //[SerializeField] List<Item> items;
     [SerializeField] List<Item> Furnitures = new List<Item>();
@@ -35,7 +35,7 @@ public class DataHandler : MonoBehaviour
     {
 #if UNITY_EDITOR
         //---Uncomment it when runing reset in editor ---
-        buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ButtonManager>();
+        buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ObjectButtonHandler>();
         var files = Directory.GetFiles("Assets/AddressableAssets/Items/", "*.asset");
         foreach (var file in files)
         {
@@ -58,11 +58,12 @@ public class DataHandler : MonoBehaviour
     {
         CreateButtons(Furnitures);
     }
+    
     void CreateButtons(List<Item> items)
     {
         foreach (Item i in items)
         {
-            ButtonManager b = Instantiate(buttonPrefab, buttonContainer.transform);
+            ObjectButtonHandler b = Instantiate(buttonPrefab, buttonContainer.transform);
             b.name = i.name;
             b.ItemId = currentId;
             b.ButtonTexture = i.itemImage;
@@ -75,7 +76,7 @@ public class DataHandler : MonoBehaviour
     {
         foreach (Item i in items)
         {
-            ButtonManager b = Instantiate(buttonPrefab, buttonContainer.transform);
+            ObjectButtonHandler b = Instantiate(buttonPrefab, buttonContainer.transform);
             b.name = i.name;
             b.ItemId = currentId;
             b.ButtonTexture = i.itemImage;
