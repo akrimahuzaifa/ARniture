@@ -11,6 +11,7 @@ using UnityEngine.XR.Interaction.Toolkit.AR;
 ]
 public class ObjectHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject normal;
     [SerializeField] private GameObject ARSelection;
     [SerializeField] private GameObject onCollision;
 
@@ -28,20 +29,20 @@ public class ObjectHandler : MonoBehaviour
 #endif
         var rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
-
+        rb.useGravity = true;
     }
 
     private void MakeOrGetObject(string name, ref GameObject setObject, int colorCode)
     {
-        GameObject mesh = transform.GetChild(0).gameObject;
-        Debug.Log("Mesh: " + mesh.name);
+        normal = transform.GetChild(0).gameObject;
+        //Debug.Log("Normal: " + normal.name);
         if (!transform.Find(name))
         {
             Debug.Log("NotFound making New");
             GameObject parent = new(name);
             parent.transform.parent = transform;
-            GameObject child = Instantiate(mesh, parent.transform);
-            child.name = mesh.name;
+            GameObject child = Instantiate(normal, parent.transform);
+            child.name = normal.name;
             setObject = parent;
             ApplyShader(colorCode, parent);
             parent.SetActive(false);
@@ -78,11 +79,15 @@ public class ObjectHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Oncollision Enter");
+        normal.SetActive(false);
         onCollision.SetActive(true);
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        Debug.Log("Oncollision Exit");
+        normal.SetActive(true);
         onCollision.SetActive(false);
     }
 }

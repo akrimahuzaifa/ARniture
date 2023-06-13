@@ -49,7 +49,7 @@ namespace Michsky.MUIP
         {
             yield return new WaitForSeconds(notifications[currentNotification].timer + delay);
             Destroy(notifications[currentNotification].gameObject);
-            // notifications.Remove(notifications[currentNotification]);
+            // notificationPanels.Remove(notificationPanels[currentNotification]);
             enableUpdating = true;
             currentNotification += 1;
             StopCoroutine("StartNotification");

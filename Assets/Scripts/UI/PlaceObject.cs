@@ -20,6 +20,7 @@ public class PlaceObject : MonoBehaviour
 
     private void OnPlaceClick()
     {
+        inputManager.PreviewObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         inputManager.PreviewObject = null;
         gameObject.SetActive(false);
     }

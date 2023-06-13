@@ -510,8 +510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f85938189b42342971d6ede48542fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ARSelection: {fileID: 0}
-  onCollision: {fileID: 0}
+  normal: {fileID: 8764407009164543883}
+  ARSelection: {fileID: 4401731729475209664}
+  onCollision: {fileID: 1635318382387781605}
 --- !u!1 &1635318382387781605
 GameObject:
   m_ObjectHideFlags: 0
