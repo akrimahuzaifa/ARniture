@@ -56,10 +56,10 @@ public class DataHandler : MonoBehaviour
 
     private void Awake()
     {
-        CreateButtons(Furnitures);
+        StartCoroutine(CreateButtons(Furnitures));
     }
     
-    void CreateButtons(List<Item> items)
+    IEnumerator CreateButtons(List<Item> items)
     {
         foreach (Item i in items)
         {
@@ -69,7 +69,8 @@ public class DataHandler : MonoBehaviour
             b.ButtonTexture = i.itemImage;
             currentId++;
         }
-        StartCoroutine(UIContentFitter.Instance.ContentSizeFitter());
+        yield return StartCoroutine(UIContentFitter.Instance.ContentSizeFitter());
+
     }
 
 /*    void CreateButtons()

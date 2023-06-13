@@ -6,9 +6,9 @@ using UnityEngine;
 public class NotifierManager : MonoBehaviour
 {
     public string[] typesOfNotification;
-    public List<NotificationsKeyValue> notificationsKeyValues = new List<NotificationsKeyValue>();
-    
     [SerializeField] private NotificationManager[] notificationPanels;
+    
+    public List<NotificationsKeyValue> notificationsKeyValues = new List<NotificationsKeyValue>();
     NotificationsKeyValue obj;
 
     private void Reset()
@@ -50,7 +50,7 @@ public class NotifierManager : MonoBehaviour
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class NotificationsKeyValue
 {
     public string Key;
