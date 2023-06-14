@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour
     {
         signUpUI = GameObject.Find("SignUpPanel");
         signInUI = GameObject.Find("SignInPanel");
+        signOutUI = GameObject.Find("CameraViewPanel");
         exploreCategoriesUI = GameObject.Find("ExploreCategoriesPanel");
         interiorObjectsUI = GameObject.Find("InteriorObjectsPanel");
 
@@ -41,6 +42,7 @@ public class UIController : MonoBehaviour
 
         signUpBtn = signUpUI.GetComponentInChildren<ButtonManager>();
         signInBtn = signInUI.GetComponentInChildren<ButtonManager>();
+        signOutBtn = signOutUI.GetComponentInChildren<ButtonManager>();
 
         notifierManager = FindObjectOfType<NotifierManager>();
     }
@@ -49,6 +51,7 @@ public class UIController : MonoBehaviour
     {
         signUpBtn.onClick.AddListener(() => SignUpUser());
         signInBtn.onClick.AddListener(() => SignInUser());
+        signOutBtn.onClick.AddListener(() => SignOutUser());
     }
 
     private void SignUpUser()
@@ -57,7 +60,7 @@ public class UIController : MonoBehaviour
         if (!CheckFields(signUpInputFlds)) { return; }
         if (!termAndPolicies.isOn)
         {
-            //Debug.Log("Term are not agreed");
+            Debug.Log("Term are not agreed");
             //notifierManager.Notify(notifierManager.errorTitle, "Please Agree to Terms & Conditions");
             notifierManager.Notify(notifierManager.typesOfNotification[1]);
             return;
@@ -75,6 +78,12 @@ public class UIController : MonoBehaviour
         // Do SignIn
         signInUI.SetActive(false);
         exploreCategoriesUI.SetActive(true);
+    }
+
+    private void SignOutUser()
+    {
+        signOutUI.SetActive(false);
+        signInUI.SetActive(true);
     }
 
     private bool CheckFields(TMP_InputField[] fieldsFor)
