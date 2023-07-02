@@ -6,6 +6,7 @@ public class ObjectButtonHandler : MonoBehaviour
 {
     public Button btn;
     [SerializeField] RawImage buttonImage;
+    public bool isFurniture = false;
 
     int itemId;
     public int ItemId 
@@ -45,9 +46,16 @@ public class ObjectButtonHandler : MonoBehaviour
 
     public void SelectedObject()
     {
-        //Debug.Log("Clicked item: " + gameObject.name);
-        //DataHandler.Instance.furniture = furniture;
-        DataHandler.Instance.SetFurniture(itemId);
+        if (isFurniture)
+        {
+            //Debug.Log("Clicked item: " + gameObject.name);
+            //DataHandler.Instance.desiredObject = desiredObject;
+            DataHandler.Instance.SetFurniture(itemId);
+        }
+        else
+        {
+            DataHandler.Instance.SetWallObject(itemId);
+        }
         InputManager.OnButtonClick?.Invoke();
     }
 }

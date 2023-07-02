@@ -32,4 +32,9 @@ public class UIContentFitter : MonoBehaviour
         float width = hg.spacing * childCount + childCount * childWidth + hg.padding.left;
         GetComponent<RectTransform>().sizeDelta = new Vector2(width, 230);
     }
+
+    public void StartContentSizeFitter()
+    {
+        StartCoroutine(ContentSizeFitter());
+    }
 }

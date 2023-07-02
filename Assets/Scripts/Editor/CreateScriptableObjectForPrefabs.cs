@@ -4,8 +4,8 @@ using System.IO;
 
 public class CreateScriptableObjectForPrefabs : EditorWindow
 {
-    private string prefabFolderPath = "Assets/Prefabs/Perfabs-Models/Furnitures/";
-    private string scriptableObjectFolderPath = "Assets/AddressableAssets/Items/";
+    private string prefabFolderPath = "Assets/Prefabs/Perfabs-Models/WallObjects/";
+    private string scriptableObjectFolderPath = "Assets/AddressableAssets/Items/WallObjects/";
     private bool searchInSubDirectories;
 
     [MenuItem("AHK/Create ScriptableObjects for Prefabs")]

@@ -14,14 +14,13 @@ public class Item : ScriptableObject
     
     [SerializeField] private string texturePath;
     [SerializeField] private string objectName;
-    [SerializeField] private bool isFurniture = true;
+    [SerializeField] private bool isFurniture = false;
 
     #if UNITY_EDITOR
     public void Reset()
     {
         price = 100;
-        SetPrefabPath();
-        texturePath = "Assets/Textures/Sprites/Buttons/";
+        SetPaths();
         GetObjectName();
         GetItemPrefab();
         SetItemImage();
@@ -29,17 +28,20 @@ public class Item : ScriptableObject
 
 
 
-    private void SetPrefabPath()
+    private void SetPaths()
     {
         if (isFurniture)
         {
             prefabPath = "Assets/Prefabs/Perfabs-Models/Furnitures/";
+            texturePath = "Assets/Textures/Sprites/Buttons/";
         }
         else
         {
             if (Directory.Exists("Assets/Prefabs/Perfabs-Models/WallObjects"))
             {
                 prefabPath = "Assets/Prefabs/Perfabs-Models/WallObjects/";
+                texturePath = "Assets/Textures/Sprites/Buttons/WallObjects/";
+                Debug.Log("Paths: " + prefabPath + "\n" + texturePath);
             }
         }
     }
@@ -48,6 +50,7 @@ public class Item : ScriptableObject
     {
         // Get the asset file path of the ScriptableObject
         string assetPath = AssetDatabase.GetAssetPath(this);
+        Debug.Log("AssetPath: " + assetPath);
 
         // Get the file name without extension
         objectName = Path.GetFileNameWithoutExtension(assetPath);
@@ -80,6 +83,10 @@ public class Item : ScriptableObject
                 SetPrefab(prefabPath);
             }
         }
+        else
+        {
+            SetPrefab(prefabPath);
+        }
     }
 
     private void SetPrefab(string folderPath)
@@ -87,8 +94,8 @@ public class Item : ScriptableObject
         var files = Directory.GetFiles(folderPath, "*.prefab");
         foreach (string file in files)
         {
-            //Debug.Log(file);
-            //Debug.Log(objectName);
+            //Debug.Log("file: " + file);
+            //Debug.Log("objName:: " + objectName);
             if (file.Contains(objectName))
             {
                 itemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(file);

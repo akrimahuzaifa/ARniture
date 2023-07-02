@@ -10,11 +10,12 @@ using UnityEngine.AddressableAssets;
 
 public class DataHandler : MonoBehaviour
 {
-    GameObject furniture;
+    GameObject desiredObject;
     [SerializeField] ObjectButtonHandler buttonPrefab;
     [SerializeField] GameObject buttonContainer;
     //[SerializeField] List<Item> items;
-    [SerializeField] List<Item> Furnitures = new List<Item>();
+    [SerializeField] public List<Item> furnitures = new List<Item>();
+    [SerializeField] public List<Item> wallObjects = new List<Item>();
     [SerializeField] private string label = "Furnitures";
     int currentId = 0;
 
@@ -35,15 +36,22 @@ public class DataHandler : MonoBehaviour
     {
 #if UNITY_EDITOR
         //---Uncomment it when runing reset in editor ---
-        buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "Button.prefab", typeof(GameObject)).GetComponent<ObjectButtonHandler>();
-        var files = Directory.GetFiles("Assets/AddressableAssets/Items/", "*.asset");
-        foreach (var file in files)
+        buttonPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + "ObjectButton.prefab", typeof(GameObject)).GetComponent<ObjectButtonHandler>();
+        var furnitureFiles = Directory.GetFiles("Assets/AddressableAssets/Items/", "*.asset");
+        var wallObjectsFiles = Directory.GetFiles("Assets/AddressableAssets/Items/WallObjects/", "*.asset");
+        foreach (var file in furnitureFiles)
         {
             var item = AssetDatabase.LoadAssetAtPath<Item>(file);
-            Furnitures.Add(item);
+            furnitures.Add(item);
+        }
+
+        foreach (var wallObject in wallObjectsFiles)
+        {
+            var item = AssetDatabase.LoadAssetAtPath<Item>(wallObject);
+            wallObjects.Add(item);
         }
 #endif
-        buttonContainer = GameObject.Find("Content");
+        buttonContainer = FindObjectOfType<UIContentFitter>().gameObject;
     }
 
     /*    private async void Awake()
@@ -56,7 +64,7 @@ public class DataHandler : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(CreateButtons(Furnitures));
+        StartCoroutine(CreateButtons(furnitures));
     }
     
     IEnumerator CreateButtons(List<Item> items)
@@ -68,6 +76,7 @@ public class DataHandler : MonoBehaviour
             b.ItemId = currentId;
             b.ButtonTexture = i.itemImage;
             currentId++;
+            //Debug.Log("Butn Instantiated:: " + b, b.gameObject);
         }
         yield return StartCoroutine(UIContentFitter.Instance.ContentSizeFitter());
 
@@ -88,12 +97,17 @@ public class DataHandler : MonoBehaviour
 
     public void SetFurniture(int id)
     {
-        furniture = Furnitures[id].itemPrefab;
+        desiredObject = furnitures[id].itemPrefab;
+    }
+
+    public void SetWallObject(int id)
+    {
+        desiredObject = wallObjects[id].itemPrefab;
     }
 
     public GameObject GetFurniture()
     {
-        return furniture;
+        return desiredObject;
     }
 
 /*    public async Task Get(string label)

@@ -17,11 +17,11 @@ public class ContextMenus : MonoBehaviour
                 item.AddComponent<Button>();
                 item.AddComponent<ObjectButtonHandler>();
                 item.GetComponent<ObjectButtonHandler>().btn = item.GetComponent<Button>();
-                //item.GetComponent<ObjectButtonHandler>().furniture = Resources.Load<GameObject>("Perfabs-Models/" + item.gameObject.name);
+                //item.GetComponent<ObjectButtonHandler>().desiredObject = Resources.Load<GameObject>("Perfabs-Models/" + item.gameObject.name);
 #if UNITY_EDITOR
                 var obj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Perfabs-Models/" + item.gameObject.name + ".prefab", typeof(GameObject));
 #endif
-                //item.GetComponent<ObjectButtonHandler>().furniture = obj;
+                //item.GetComponent<ObjectButtonHandler>().desiredObject = obj;
             }
         }
     }

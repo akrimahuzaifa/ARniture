@@ -88,19 +88,19 @@ public class InputManager : ARBaseGestureInteractable
             PreviewObject.transform.parent = anchorObject.transform;*/
 
             #region Logic to do not instantiate new object if its already there
-            /*            var furniture = DataHandler.Instance.GetFurniture();
-                        if (_ARObjects.Contains(furniture))
+            /*            var desiredObject = DataHandler.Instance.GetFurniture();
+                        if (_ARObjects.Contains(desiredObject))
                         {
                             var objOpen = (from fur in _ARObjects
-                                           where fur == furniture
+                                           where fur == desiredObject
                                            select fur).FirstOrDefault();
 
-                            var obj = _ARObjects.Where(x => x == furniture).FirstOrDefault();
+                            var obj = _ARObjects.Where(x => x == desiredObject).FirstOrDefault();
                             obj.transform.parent.SetPositionAndRotation(pose.position, pose.rotation);
                         }
                         else
                         {
-                            GameObject PreviewObject = Instantiate(furniture, pose.position, pose.rotation);
+                            GameObject PreviewObject = Instantiate(desiredObject, pose.position, pose.rotation);
                             PreviewObject.name = DataHandler.Instance.GetFurniture().name;
                             Debug.Log("Object instantiated...: " + PreviewObject.name);
                             var anchorObject = new GameObject("PlacementAnchor");
