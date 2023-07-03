@@ -25,7 +25,7 @@ public class UIContentFitter : MonoBehaviour
 
     public IEnumerator ContentSizeFitter()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         HorizontalLayoutGroup hg = GetComponent<HorizontalLayoutGroup>();
         int childCount = transform.childCount - 1;
         float childWidth = transform.GetChild(0).GetComponent<RectTransform>().rect.width;

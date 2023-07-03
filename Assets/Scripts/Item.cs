@@ -96,7 +96,11 @@ public class Item : ScriptableObject
         {
             //Debug.Log("file: " + file);
             //Debug.Log("objName:: " + objectName);
-            if (file.Contains(objectName))
+/*            if (file.Contains(objectName))
+            {
+                itemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(file);
+            }*/
+            if (Path.GetFileNameWithoutExtension(file) == objectName)
             {
                 itemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(file);
             }
@@ -110,7 +114,7 @@ public class Item : ScriptableObject
         {
             //Debug.Log(file);
             //Debug.Log(objectName);
-            if (file.Contains(objectName))
+            if (Path.GetFileNameWithoutExtension(file) == objectName)
             {
                 itemImage = AssetDatabase.LoadAssetAtPath<Sprite>(file);
             }
