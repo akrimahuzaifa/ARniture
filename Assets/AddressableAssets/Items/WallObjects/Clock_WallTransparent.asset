@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Clock_WallTransparent
   m_EditorClassIdentifier: 
   price: 100
-  itemPrefab: {fileID: 0}
-  itemImage: {fileID: 0}
+  itemPrefab: {fileID: 4920537262527072425, guid: 424cbd567c80063429f95969af34f8f3, type: 3}
+  itemImage: {fileID: 21300000, guid: e932b2918d0aacc4784fbba4b5d10c17, type: 3}
   searchInSubDirectories: 0
   prefabPath: Assets/Prefabs/Perfabs-Models/WallObjects/
   texturePath: Assets/Textures/Sprites/Buttons/WallObjects/
-  objectName: 
+  objectName: Clock_WallTransparent
   isFurniture: 0

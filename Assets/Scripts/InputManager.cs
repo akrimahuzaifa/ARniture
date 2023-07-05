@@ -58,7 +58,7 @@ public class InputManager : ARBaseGestureInteractable
         touch = Input.GetTouch(0);
         if (Input.touchCount < 0 || touch.phase != TouchPhase.Began) return;
         if (IsPointerOverUI(touch)) return;
-        Instantiate(DataHandler.Instance.GetFurniture(), pose.position, pose.rotation);
+        Instantiate(DataHandler.Instance.GetDesiredObject(), pose.position, pose.rotation);
 #endif*/
     }
 
@@ -80,7 +80,7 @@ public class InputManager : ARBaseGestureInteractable
         }
         if (GestureTransformationUtility.Raycast(gesture.startPosition, _hits, TrackableType.PlaneWithinPolygon))
         {
-/*            PreviewObject = Instantiate(DataHandler.Instance.GetFurniture(), pose.position, pose.rotation);
+/*            PreviewObject = Instantiate(DataHandler.Instance.GetDesiredObject(), pose.position, pose.rotation);
             Debug.Log("Object instantiated...: " + PreviewObject.name);
             var anchorObject = new GameObject("PlacementAnchor");
             anchorObject.transform.position = pose.position;
@@ -88,7 +88,7 @@ public class InputManager : ARBaseGestureInteractable
             PreviewObject.transform.parent = anchorObject.transform;*/
 
             #region Logic to do not instantiate new object if its already there
-            /*            var desiredObject = DataHandler.Instance.GetFurniture();
+            /*            var desiredObject = DataHandler.Instance.GetDesiredObject();
                         if (_ARObjects.Contains(desiredObject))
                         {
                             var objOpen = (from fur in _ARObjects
@@ -101,7 +101,7 @@ public class InputManager : ARBaseGestureInteractable
                         else
                         {
                             GameObject PreviewObject = Instantiate(desiredObject, pose.position, pose.rotation);
-                            PreviewObject.name = DataHandler.Instance.GetFurniture().name;
+                            PreviewObject.name = DataHandler.Instance.GetDesiredObject().name;
                             Debug.Log("Object instantiated...: " + PreviewObject.name);
                             var anchorObject = new GameObject("PlacementAnchor");
                             anchorObject.transform.position = pose.position;
@@ -143,7 +143,7 @@ public class InputManager : ARBaseGestureInteractable
             anchorObject.transform.position = pose.position;
             anchorObject.transform.rotation = pose.rotation;
 
-            var furniture = DataHandler.Instance.GetFurniture();
+            var furniture = DataHandler.Instance.GetDesiredObject();
             PreviewObject = Instantiate(furniture, pose.position, pose.rotation, anchorObject.transform);
             PreviewObject.name = furniture.name;
             Debug.Log("Object instantiated...: " + PreviewObject.name);

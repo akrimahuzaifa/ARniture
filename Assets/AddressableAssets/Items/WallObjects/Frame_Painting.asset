@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Frame_Painting
   m_EditorClassIdentifier: 
   price: 100
-  itemPrefab: {fileID: 0}
-  itemImage: {fileID: 0}
+  itemPrefab: {fileID: 1350677619011840356, guid: 6ab07256b36e56a469d0d3a520f299de, type: 3}
+  itemImage: {fileID: 21300000, guid: 7adafe656878b5e42b03d3f81b64a545, type: 3}
   searchInSubDirectories: 0
   prefabPath: Assets/Prefabs/Perfabs-Models/WallObjects/
   texturePath: Assets/Textures/Sprites/Buttons/WallObjects/
-  objectName: 
+  objectName: Frame_Painting
   isFurniture: 0

@@ -1,5 +1,6 @@
 using cakeslice;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.AR;
 
@@ -11,34 +12,48 @@ using UnityEngine.XR.Interaction.Toolkit.AR;
 ]
 public class ObjectHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject normal;
-    [SerializeField] private GameObject ARSelection;
-    [SerializeField] private GameObject onCollision;
+    public GameObject normal;
+    public GameObject ARSelection;
+    public GameObject onCollision;
 
     #region EditorCode
     private void Reset()
     {
+#if UNITY_EDITOR
         MakeOrGetObject("ARSelection", ref ARSelection, 0);
         MakeOrGetObject("OnCollision", ref onCollision, 1);
 
         GetComponent<ARSelectionInteractable>().selectionVisualization = ARSelection;
 
-#if UNITY_EDITOR
         //var collider = GetComponent<BoxCollider>();
         //collider.material = AssetDatabase.LoadAssetAtPath<PhysicMaterial>("Assets/Prefabs/ObjectPhysics.physicMaterial");
-#endif
-        var rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
-        rb.useGravity = true;
-    }
 
+        var rb = GetComponent<Rigidbody>();
+
+        // Get the prefab path
+        //var path = AssetDatabase.GetAssetPath(this); //Does not work in hirarchy
+
+        string prefabPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(gameObject);
+
+        Debug.Log("Prefab Path: " + prefabPath);
+        if (prefabPath.Contains("WallObjects"))
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+        }
+        rb.useGravity = true;
+#endif
+    }
     private void MakeOrGetObject(string name, ref GameObject setObject, int colorCode)
     {
         normal = transform.GetChild(0).gameObject;
         //Debug.Log("Normal: " + normal.name);
         if (!transform.Find(name))
         {
-            Debug.Log("NotFound making New");
+            Debug.Log("NotFound making New: " + name);
             GameObject parent = new(name);
             parent.transform.parent = transform;
             GameObject child = Instantiate(normal, parent.transform);

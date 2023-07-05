@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Frame_Heartshaped
   m_EditorClassIdentifier: 
   price: 100
-  itemPrefab: {fileID: 0}
-  itemImage: {fileID: 0}
+  itemPrefab: {fileID: 2696948135561984330, guid: ff92ff0c59ecaab408a25b5464932686, type: 3}
+  itemImage: {fileID: 21300000, guid: 95e6bd89941fc1c48afb5f0ab1da198b, type: 3}
   searchInSubDirectories: 0
   prefabPath: Assets/Prefabs/Perfabs-Models/WallObjects/
   texturePath: Assets/Textures/Sprites/Buttons/WallObjects/
-  objectName: 
+  objectName: Frame_Heartshaped
   isFurniture: 0

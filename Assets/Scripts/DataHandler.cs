@@ -105,7 +105,7 @@ public class DataHandler : MonoBehaviour
         desiredObject = wallObjects[id].itemPrefab;
     }
 
-    public GameObject GetFurniture()
+    public GameObject GetDesiredObject()
     {
         return desiredObject;
     }
