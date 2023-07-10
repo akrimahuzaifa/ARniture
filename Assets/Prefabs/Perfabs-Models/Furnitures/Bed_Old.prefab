@@ -1208,6 +1208,8 @@ MonoBehaviour:
   normal: {fileID: 1519348133735519703}
   ARSelection: {fileID: 1413443281028562099}
   onCollision: {fileID: 2101065200757053398}
+  rb: {fileID: 4337162440633160758}
+  prefabPath: Assets/Prefabs/Perfabs-Models/Furnitures/Bed_Old.prefab
 --- !u!1 &7985854706605889918
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,11 +15,15 @@ public class ObjectHandler : MonoBehaviour
     public GameObject normal;
     public GameObject ARSelection;
     public GameObject onCollision;
+    
+    public Rigidbody rb;
+    public string prefabPath/* = "Assets/Prefabs/Perfabs - Models/WallObjects/"*/;
 
     #region EditorCode
     private void Reset()
     {
 #if UNITY_EDITOR
+
         MakeOrGetObject("ARSelection", ref ARSelection, 0);
         MakeOrGetObject("OnCollision", ref onCollision, 1);
 
@@ -28,30 +32,46 @@ public class ObjectHandler : MonoBehaviour
         //var collider = GetComponent<BoxCollider>();
         //collider.material = AssetDatabase.LoadAssetAtPath<PhysicMaterial>("Assets/Prefabs/ObjectPhysics.physicMaterial");
 
-        var rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
         // Get the prefab path
         //var path = AssetDatabase.GetAssetPath(this); //Does not work in hirarchy
 
-        string prefabPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(gameObject);
+        prefabPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(gameObject);
 
+        SetPrefab();
+
+        //---Not Working---
+        //ReSizeBoxCollider();
+#endif
+    }
+
+    [ContextMenu("Set Prefab Variables")]
+    private void SetPrefab()
+    {
         Debug.Log("Prefab Path: " + prefabPath);
         if (prefabPath.Contains("WallObjects"))
         {
-            DestroyImmediate(GetComponent<ARRotationInteractable>());
+            Debug.Log("Wall Object");
+/*            if (GetComponent<ARRotationInteractable>())
+            {
+                DestroyImmediate(GetComponent<ARRotationInteractable>());
+            }*/
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
+            Debug.Log("Furniture");
+/*            if (!gameObject.GetComponent<ARRotationInteractable>())
+            {
+                gameObject.AddComponent<ARRotationInteractable>();
+            }*/
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
             rb.useGravity = true;
         }
-        
-
-        //ReSizeBoxCollider();
-#endif
     }
+
     private void MakeOrGetObject(string name, ref GameObject setObject, int colorCode)
     {
         normal = transform.GetChild(0).gameObject;

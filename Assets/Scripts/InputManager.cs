@@ -141,24 +141,34 @@ public class InputManager : ARBaseGestureInteractable
         {
             pose = _hits[0].pose;
             var plane = _hits[0].trackable as ARPlane;
+            
+            var anchorObject = new GameObject("PlacementAnchor");
+            anchorObject.transform.position = pose.position;
+            anchorObject.transform.rotation = pose.rotation;
+
+            var furniture = DataHandler.Instance.GetDesiredObject();
+            PreviewObject = Instantiate(furniture, pose.position, /*pose.rotation*/Quaternion.identity, anchorObject.transform);
+            PreviewObject.name = furniture.name;
+            Debug.Log("Object instantiated...: " + PreviewObject.name);
+            
             if (plane.alignment == PlaneAlignment.Vertical)
             {
                 // Handle vertical plane placement differently
-                Debug.Log("Vertical Plane");
+                Debug.Log("Vertical Plane: " + PreviewObject.name);
+                // Set a predefined rotation for vertical plane
+                PreviewObject.transform.rotation = Quaternion.Euler(0, 0, 90); // Adjust as needed
+
+                /*                Vector3 planeNormal = plane.normal;
+                                Vector3 upDirection = Vector3.up;
+
+                                Quaternion rotation = Quaternion.FromToRotation(upDirection, planeNormal);
+                                PreviewObject.transform.rotation = rotation;*/
             }
             else
             {
                 // Handle horizontal plane placement (default behavior)
                 Debug.Log("Horizontal Plane");
             }
-            var anchorObject = new GameObject("PlacementAnchor");
-            anchorObject.transform.position = pose.position;
-            anchorObject.transform.rotation = pose.rotation;
-
-            var furniture = DataHandler.Instance.GetDesiredObject();
-            PreviewObject = Instantiate(furniture, pose.position, pose.rotation, anchorObject.transform);
-            PreviewObject.name = furniture.name;
-            Debug.Log("Object instantiated...: " + PreviewObject.name);
             placeObject.gameObject.SetActive(true);
         }
 
