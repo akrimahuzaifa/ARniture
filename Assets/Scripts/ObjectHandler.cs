@@ -38,13 +38,18 @@ public class ObjectHandler : MonoBehaviour
         Debug.Log("Prefab Path: " + prefabPath);
         if (prefabPath.Contains("WallObjects"))
         {
+            DestroyImmediate(GetComponent<ARRotationInteractable>());
+            rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+            rb.useGravity = true;
         }
-        rb.useGravity = true;
+        
+
+        //ReSizeBoxCollider();
 #endif
     }
     private void MakeOrGetObject(string name, ref GameObject setObject, int colorCode)
@@ -85,6 +90,26 @@ public class ObjectHandler : MonoBehaviour
         }
     }
 
+    private void ReSizeBoxCollider() 
+    {
+        MeshFilter[] meshFilters = normal.GetComponentsInChildren<MeshFilter>();
+        // Create an empty bounds to encapsulate all the mesh bounds
+        Bounds combinedBounds = new Bounds();
+
+        // Loop through all the mesh filters and expand the combined bounds
+        foreach (MeshFilter filter in meshFilters)
+        {
+            combinedBounds.Encapsulate(filter.mesh.bounds);
+        }
+        BoxCollider boxCollider = GetComponent<BoxCollider>();
+
+        // Set the center of the Box Collider to the center of the combined bounds
+        boxCollider.center = combinedBounds.center;
+
+        // Set the size of the Box Collider to the size of the combined bounds
+        boxCollider.size = combinedBounds.size;
+    }
+
     public void OnResetButton()
     {
         //Debug.Log("Button clicked!");
@@ -92,7 +117,7 @@ public class ObjectHandler : MonoBehaviour
     }
     #endregion EditorCode
 
-    private void OnCollisionEnter(Collision collision)
+/*    private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Oncollision Enter");
         normal.SetActive(false);
@@ -104,6 +129,6 @@ public class ObjectHandler : MonoBehaviour
         Debug.Log("Oncollision Exit");
         normal.SetActive(true);
         onCollision.SetActive(false);
-    }
+    }*/
 }
 

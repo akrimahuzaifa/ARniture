@@ -22,13 +22,13 @@ public class PlaceObject : MonoBehaviour
 
     private void OnPlaceClick()
     {
+        inputManager.gameObject.SetActive(true);
         inputManager.PreviewObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         
         var objHandler = inputManager.PreviewObject.GetComponent<ObjectHandler>();
         objHandler.normal.SetActive(true);
         objHandler.onCollision.SetActive(false);
-        DestroyComponents();
-
+        //DestroyComponents();
         inputManager.PreviewObject = null;
         gameObject.SetActive(false);
     }

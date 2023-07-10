@@ -49,8 +49,8 @@ public class InputManager : ARBaseGestureInteractable
     {
         CrosshairCalculation();
         //-----Logic to move object with crossheir---
-        if (!PreviewObject) return;
-        PreviewObject.transform.parent.position = crosshair.transform.position;
+        //if (!PreviewObject) return;
+        //PreviewObject.transform.parent.position = crosshair.transform.position;
     
 
 /*#if !UNITY_EDITOR
@@ -139,6 +139,18 @@ public class InputManager : ARBaseGestureInteractable
         Vector3 origin = arCam.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0));
         if (_ARRaycastManager.Raycast(origin, _hits, TrackableType.PlaneWithinPolygon))
         {
+            pose = _hits[0].pose;
+            var plane = _hits[0].trackable as ARPlane;
+            if (plane.alignment == PlaneAlignment.Vertical)
+            {
+                // Handle vertical plane placement differently
+                Debug.Log("Vertical Plane");
+            }
+            else
+            {
+                // Handle horizontal plane placement (default behavior)
+                Debug.Log("Horizontal Plane");
+            }
             var anchorObject = new GameObject("PlacementAnchor");
             anchorObject.transform.position = pose.position;
             anchorObject.transform.rotation = pose.rotation;
@@ -147,8 +159,9 @@ public class InputManager : ARBaseGestureInteractable
             PreviewObject = Instantiate(furniture, pose.position, pose.rotation, anchorObject.transform);
             PreviewObject.name = furniture.name;
             Debug.Log("Object instantiated...: " + PreviewObject.name);
-            //PreviewObject.transform.parent = anchorObject.transform;
             placeObject.gameObject.SetActive(true);
         }
+
+        gameObject.SetActive(false);
     }
 }
