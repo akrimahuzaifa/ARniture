@@ -53,20 +53,12 @@ public class ObjectHandler : MonoBehaviour
         if (prefabPath.Contains("WallObjects"))
         {
             Debug.Log("Wall Object");
-/*            if (GetComponent<ARRotationInteractable>())
-            {
-                DestroyImmediate(GetComponent<ARRotationInteractable>());
-            }*/
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         }
         else
         {
             Debug.Log("Furniture");
-/*            if (!gameObject.GetComponent<ARRotationInteractable>())
-            {
-                gameObject.AddComponent<ARRotationInteractable>();
-            }*/
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
             rb.useGravity = true;
         }
@@ -79,13 +71,11 @@ public class ObjectHandler : MonoBehaviour
         if (!transform.Find(name))
         {
             Debug.Log("NotFound making New: " + name);
-            GameObject parent = new(name);
-            parent.transform.parent = transform;
-            GameObject child = Instantiate(normal, parent.transform);
-            child.name = normal.name;
-            setObject = parent;
-            ApplyShader(colorCode, parent);
-            parent.SetActive(false);
+            GameObject child = Instantiate(normal, transform);
+            child.name = name;
+            setObject = child;
+            ApplyShader(colorCode, child);
+            child.SetActive(false);
         }
         else
         {
@@ -96,9 +86,9 @@ public class ObjectHandler : MonoBehaviour
         }
     }
 
-    private void ApplyShader(int shaderColor, GameObject parent)
+    private void ApplyShader(int shaderColor, GameObject clone)
     {
-        foreach (var item in parent.GetComponentsInChildren<MeshRenderer>())
+        foreach (var item in clone.GetComponentsInChildren<MeshRenderer>())
         {
             OutlineShader shader = item.GetComponent<OutlineShader>();
             if (!shader)

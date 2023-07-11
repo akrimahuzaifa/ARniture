@@ -156,7 +156,7 @@ public class InputManager : ARBaseGestureInteractable
                 // Handle vertical plane placement differently
                 Debug.Log("Vertical Plane: " + PreviewObject.name);
                 // Set a predefined rotation for vertical plane
-                PreviewObject.transform.rotation = Quaternion.Euler(0, 0, 90); // Adjust as needed
+                PreviewObject.transform.rotation = Quaternion.Euler(90, 0, 90); // Adjust as needed
 
                 /*                Vector3 planeNormal = plane.normal;
                                 Vector3 upDirection = Vector3.up;
