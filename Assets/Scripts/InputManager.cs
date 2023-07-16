@@ -132,15 +132,11 @@ public class InputManager : ARBaseGestureInteractable
             crosshair.transform.position = pose.position;
 
             var plane = _hits[0]. trackable as ARPlane;
-            if (plane.alignment == PlaneAlignment.Vertical)
-            {
-                Vector3 planeUp = plane.normal;
-                Vector3 objectUp = crosshair.transform.up;
+            Vector3 planeUp = plane.normal;
+            Vector3 objectUp = crosshair.transform.up;
 
-                Quaternion rotation = Quaternion.FromToRotation(objectUp, planeUp);
-                crosshair.transform.rotation = rotation * crosshair.transform.rotation;
-                Debug.Log("CrossHair Rotation: " + crosshair.transform.rotation);
-            }
+            Quaternion rotation = Quaternion.FromToRotation(objectUp, planeUp);
+            crosshair.transform.rotation = rotation * crosshair.transform.rotation;
             //crosshair.transform.eulerAngles = new Vector3(90, 0, 0);
         }
     }
