@@ -59,6 +59,17 @@ public class UIController : MonoBehaviour
         signUpBtn.onClick.AddListener(() => SignUpUser());
         signInBtn.onClick.AddListener(() => SignInUser());
         signOutBtn.onClick.AddListener(() => SignOutUser());
+        string userNamePref = PlayerPrefs.GetString("userNamePref");
+        string passwordPref = PlayerPrefs.GetString("passwordPref");
+        if (!string.IsNullOrEmpty(userNamePref) && !string.IsNullOrEmpty(passwordPref))
+        {
+            Debug.Log("UserPref: " + userNamePref);
+            Debug.Log("PassPref: " + password);
+            userName = userNamePref;
+            password = passwordPref;
+            //signUpInputFlds[0].text = userNamePref;
+            //signUpInputFlds[1].text = passwordPref;
+        }
     }
 
     private void SignUpUser()
@@ -80,6 +91,10 @@ public class UIController : MonoBehaviour
         // Do SignUp
         userName = signUpInputFlds[0].text;
         password = signUpInputFlds[1].text;
+
+        PlayerPrefs.SetString("userNamePref", userName);
+        PlayerPrefs.SetString("passwordPref", password);
+
         signUpUI.SetActive(false);
         signInUI.SetActive(true);
     }
