@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 9100998745525043669}
   - component: {fileID: 8551976624284450140}
   m_Layer: 0
-  m_Name: Table_Scifi
+  m_Name: Table_Sci-Fi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

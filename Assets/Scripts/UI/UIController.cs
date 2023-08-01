@@ -64,7 +64,7 @@ public class UIController : MonoBehaviour
         if (!string.IsNullOrEmpty(userNamePref) && !string.IsNullOrEmpty(passwordPref))
         {
             Debug.Log("UserPref: " + userNamePref);
-            Debug.Log("PassPref: " + password);
+            Debug.Log("PassPref: " + passwordPref);
             userName = userNamePref;
             password = passwordPref;
             //signUpInputFlds[0].text = userNamePref;

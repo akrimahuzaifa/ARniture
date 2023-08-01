@@ -22,17 +22,17 @@ public class FloorWallButtonsHandler : MonoBehaviour
 
     private void Start()
     {
-        buttonManager.onClick.AddListener(() => OnSelectCategory(gameObject.name));
+        GetComponent<ButtonManager>().onClick.AddListener(() => OnSelectCategory(buttonManager.gameObject.name));
     }
 
-    private void OnSelectCategory(string btnName)
+    public void OnSelectCategory(string btnName)
     {
         //ButtonsOnClicksHandler.OnCategoryClick?.Invoke(btnName);
-        Debug.Log("Before btnsHolder.childCount" + btnsHolder.childCount);
+        //Debug.Log("Before btnsHolder.childCount" + btnsHolder.childCount);
         int btnsCount = btnsHolder.childCount;
         for (int i = 0; i < btnsCount; i++)
         {
-            Debug.Log("btnsHolder.childCount: " + i);
+            //Debug.Log("btnsHolder.childCount: " + i);
             btnsHolder.GetChild(0).SetParent(inActiveBtnsHolder.transform);
         }
 

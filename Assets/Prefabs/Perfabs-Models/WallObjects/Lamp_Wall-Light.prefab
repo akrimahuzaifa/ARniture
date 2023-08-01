@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 3122758996635520621}
   - component: {fileID: 8812460948423419291}
   m_Layer: 0
-  m_Name: Lamp_WalLlight
+  m_Name: Lamp_Wall-Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

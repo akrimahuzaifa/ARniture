@@ -16,6 +16,7 @@ public class DataHandler : MonoBehaviour
     //[SerializeField] List<Item> items;
     [SerializeField] public List<Item> furnitures = new List<Item>();
     [SerializeField] public List<Item> wallObjects = new List<Item>();
+    [SerializeField] public List<Item> allObjects = new List<Item>();
     [SerializeField] private string label = "Furnitures";
     int currentId = 0;
 
@@ -43,12 +44,14 @@ public class DataHandler : MonoBehaviour
         {
             var item = AssetDatabase.LoadAssetAtPath<Item>(file);
             furnitures.Add(item);
+            allObjects.Add(item);
         }
 
         foreach (var wallObject in wallObjectsFiles)
         {
             var item = AssetDatabase.LoadAssetAtPath<Item>(wallObject);
             wallObjects.Add(item);
+            allObjects.Add(item);
         }
 #endif
         buttonContainer = FindObjectOfType<UIContentFitter>().gameObject;
