@@ -37,21 +37,26 @@ public class SpecificObject : MonoBehaviour
             btnsHolder.GetChild(0).SetParent(inActiveBtnsHolder.transform);
         }
 
-        var allObjs = dataHandler.allObjects;
-        int idCounter = 0;
-        for (int i = 0; i < allObjs.Count; i++)
+        SearchBtnInCategory(btnName, dataHandler.furnitures);
+        SearchBtnInCategory(btnName, dataHandler.wallObjects);
+        UIContentFitter.Instance.StartContentSizeFitter();
+    }
+
+    private void SearchBtnInCategory(string btnName, List<Item> objList)
+    {
+        int counter = 0;
+        for (int i = 0; i < objList.Count; i++)
         {
-            if (allObjs[i].name.Contains(btnName))
+            if (objList[i].name.Contains(btnName))
             {
                 inActiveBtnsHolder.GetChild(0).SetParent(btnsHolder);
-                ObjectButtonHandler btn = btnsHolder.GetChild(idCounter).GetComponent<ObjectButtonHandler>();
-                btn.name = allObjs[i].name;
-                btn.ItemId = idCounter;
-                btn.ButtonTexture = allObjs[i].itemImage;
+                ObjectButtonHandler btn = btnsHolder.GetChild(counter).GetComponent<ObjectButtonHandler>();
+                btn.name = objList[i].name;
+                btn.ItemId = i;
+                btn.ButtonTexture = objList[i].itemImage;
                 btn.isFurniture = isFurniture;
-                idCounter++;
+                counter++;
             }
         }
-        UIContentFitter.Instance.StartContentSizeFitter();
     }
 }
